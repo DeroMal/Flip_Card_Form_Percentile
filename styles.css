@@ -134,6 +134,11 @@ body {
     z-index: 1;
 }
 
+#winModal .green-text {/* for the rank message*/
+    color: green;
+}
+
+
 .modal-content p {
     color: #888;
     font-weight:200;

@@ -210,11 +210,16 @@ function showWinModal() {
       // Update the modal with the time and rank
       const timeDisplay = document.createElement('p');
       timeDisplay.textContent = `Your time: ${timeString}`;
-      modal.querySelector('.modal-content').prepend(timeDisplay);
+      timeDisplay.classList.add('green-text');  // Add the green-text class
 
       const rankDisplay = document.createElement('p');
       rankDisplay.textContent = data.message; // Display the ranking message
-      modal.querySelector('.modal-content').prepend(rankDisplay);
+      rankDisplay.classList.add('green-text');  // Add the green-text class
+
+      // Insert the time and rank right after the <h2> tag
+      const h2Element = modal.querySelector('h2');
+      h2Element.insertAdjacentElement('afterend', rankDisplay);
+      h2Element.insertAdjacentElement('afterend', timeDisplay);
     })
     .catch(error => {
       // Hide the spinner and show an error message
