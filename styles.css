@@ -1,0 +1,382 @@
+/* === GLOBAL STYLES === */
+body {
+    margin: 0;
+    padding: 20px 0; 
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    background-color: #f0f0f0;
+    overflow: auto;
+    font-family: Roboto, sans-serif;
+}
+
+/* === GAME CONTAINER === */
+.game-container {
+    position: relative;
+    top: 50%; 
+    transform: translateY(-50%); 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: fit-content;
+    max-width: 100%;
+}
+
+/* === GAME BOARD === */
+.game-board {
+    display: grid;
+    width: fit-content;
+    gap: 10px; 
+    justify-content: center;
+    grid-template-columns: repeat(3, 1fr); 
+}
+
+/* === CARDS === */
+.card {
+    box-sizing: border-box;
+    height: 150px;
+    width: 150px;
+    margin: 5px; 
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+.card-back, .card-front {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid black;
+    border-radius: 5px;
+    transition: transform 1s;  
+}
+
+.card-back {
+    background-color: #f5f5f5;
+    background-image: url("images/globe.webp");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.card-front {
+    transform: rotateY(180deg);
+    background-size: cover;
+    background-position: center;
+}
+
+.card.flipped .card-front {
+    transform: rotateY(0);
+}
+
+.card.flipped .card-back {
+    transform: rotateY(180deg);
+}
+
+/* === GAME INFO === */
+.game-info {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+#timer {
+    font-size: 1.5em;
+    background-color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.hidden {
+    display: none;
+}
+
+#replay {
+    margin-left: 20px;
+    padding: 5px 15px;
+}
+
+/* === MODALS === */
+.modal {
+    display: none;
+    position: fixed; 
+    top: 0; 
+    left: 0;
+    width: 100%; 
+    height: 100%; 
+    background-color: rgba(0,0,0,0.7);
+    z-index: 1000;
+}
+
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    text-align: center;
+    background-color: #f9f9f9;  
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);  
+    border-radius: 8px;  
+    padding: 20px;  
+}
+
+.modal-content h2 {
+    color: #333;  
+    font-weight:400;
+    font-size: 24px;  
+    margin-bottom: 15px;  
+}
+
+.modal-content p {
+    color: #888;
+    font-weight:200;
+    font-size: 18px;
+    font-stretch: 100%;
+    line-height: 1.5;  
+}
+
+.modal-buttons {
+    margin-top: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    background-color: #ff407d;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #b90b43;
+}
+
+#startGame {
+    animation: pulsate 2s infinite;
+    background-color: #ff407d;
+}
+
+.loading-spinner {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #3498db;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto;
+  }  
+
+/* === CONTACT FORM === */
+#contactForm {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#contactForm label {
+    font-weight: bold;
+}
+
+#contactForm input[type="text"], #contactForm input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    flex-direction: row; /* Ensure it's row */
+}
+
+#sendButton {
+    align-self: center;
+    margin-top: 10px;
+}
+
+a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.disabled-button {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.disabled-button:enabled {
+    opacity: 1;
+    cursor: pointer;
+}
+
+#thankYouModal {
+    /* width: 80vw;   */
+    /* height: 80vh;  */
+    position: fixed;
+    top: 60%;
+    left: 60%;
+    transform: translate(-60%, -60%);
+    overflow: auto; 
+}
+
+#thankYouContent {
+    width: 80vw;  
+    height: 80vh; 
+    position: fixed;
+    top: 70%;
+    left: 70%;
+    transform: translate(-70%, -70%);
+    overflow: auto; 
+}
+
+.header-image {
+    width: 100%; 
+    max-height: 300px; 
+    object-fit: cover;
+    margin-bottom: 20px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.modal-content label {
+    display: block;  
+    text-align: left;  
+    padding-bottom: 8px;  
+    line-height: 19.88px;  
+    font-weight: 400;  
+    font-size: 14px;  
+}
+
+#privacyPolicy + label {
+    display: inline;
+    text-align: left;
+    vertical-align: middle;
+}
+
+#privacyPolicy {
+    appearance: none; 
+    background-color: #f0f0f0; 
+    border: 1px solid rgb(60, 60, 60); 
+    width: 15px; 
+    height: 15px; 
+    cursor: pointer; 
+    position: relative; 
+}
+
+#privacyPolicy:checked {
+    background-color: #007BFF;
+}
+
+#privacyPolicy:checked::after {
+    content: '✓'; /* Unicode checkmark */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 16px; /* Adjust as needed */
+    color: #ffffff; /* White color for the checkmark */
+}
+
+#privacyPolicy, 
+#privacyPolicy + label {
+    margin: 0;
+    padding: 0;
+}
+
+.modal-content input[type="text"], 
+.modal-content input[type="email"] {
+    border: 1px solid lightgrey; 
+    border-width: 1px;
+    padding: 5px; 
+    margin-bottom: 10px;
+    border-color: rgb(88, 94, 97); 
+    height: 38px;
+    width: 100%; 
+    border-radius: 5px;
+}
+
+.modal-content .checkbox-container {
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    gap: 10px; 
+}
+
+/* Error styling for the input field */
+.modal-content input[type="email"].input-error {
+    border-color: red;
+    animation: shake 0.5s;
+}
+
+/* === KEYFRAMES === */
+@keyframes pulsate {
+    0% {
+        transform: scale(1);
+        opacity: 0.9;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.9;
+    }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+/* Shake animation */
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+}
+
+/* === MEDIA QUERIES === */
+@media (min-width: 601px) {
+    .game-board {
+        grid-template-columns: repeat(4, 1fr); 
+    }
+}
+
+@media (min-width: 801px) {
+    .game-board {
+        grid-template-columns: repeat(5, 1fr); 
+    }
+}
+
+@media (max-width: 700px) {
+    .card {
+        width: 85px; 
+        height: 85px;
+    }
+}
+
+@media (max-width: 500px) {
+    .card {
+        width: 80px;
+        height: 80px;
+    }
+}
