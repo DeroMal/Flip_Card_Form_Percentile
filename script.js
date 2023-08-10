@@ -297,6 +297,7 @@ sendDataButton.addEventListener('click', async function () {
   }
 
   const data = {
+    type: "saveDetails",
     Name: firstNameInput.value,
     Email: emailInput.value
   };
@@ -315,8 +316,9 @@ sendDataButton.addEventListener('click', async function () {
     }
 
     const result = await response.json();
+    console.log(result);
 
-    if (result.result === 'success') {
+    if (result.result === 'Success') {
       handleSuccessfulSubmission();
     } else {
       alert('Failed to send data. Please try again.');

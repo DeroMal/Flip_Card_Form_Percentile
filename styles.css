@@ -129,7 +129,9 @@ body {
     color: #333;  
     font-weight:400;
     font-size: 24px;  
-    margin-bottom: 15px;  
+    margin-bottom: 15px;
+    position: relative; 
+    z-index: 1;
 }
 
 .modal-content p {
@@ -172,7 +174,9 @@ button:hover {
     height: 50px;
     animation: spin 1s linear infinite;
     margin: 0 auto;
-  }  
+    z-index: 10; /* Add this line */
+    background-color: rgba(255, 255, 255, 0.8); /* Add this line */
+}  
 
 /* === CONTACT FORM === */
 #contactForm {
