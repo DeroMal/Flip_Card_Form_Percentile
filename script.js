@@ -351,7 +351,8 @@ function handleSuccessfulSubmission() {
 
 // Restart the game after the form is submitted.
 document.getElementById('restartGame').addEventListener('click', function () {
-  document.getElementById('thankYouModal').style.display = 'none';  // Hide the "Thank You" modal.
-  document.querySelector('.game-container').style.display = 'flex';  // Display the game container.
+  //document.getElementById('thankYouModal').style.display = 'none';  // Hide the "Thank You" modal.
+  //document.querySelector('.game-container').style.display = 'flex';  // Display the game container.
   resetGameState();  // Reset the game state and start a new game.
+  location.reload();  // Refresh the entire page.
 });
