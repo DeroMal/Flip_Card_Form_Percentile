@@ -110,7 +110,7 @@ body {
     left: 0;
     width: 100%; 
     height: 100%; 
-    background-color: rgba(0,0,0,0.7);
+    background-color: rgba(243, 255, 255, 0.973);
     z-index: 1000;
 }
 
@@ -121,10 +121,17 @@ body {
     transform: translate(-50%, -50%);
     padding: 20px;
     text-align: center;
-    background-color: #f9f9f9;  
+    background-color: #ffffff;  
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);  
     border-radius: 8px;  
-    padding: 20px;  
+    padding: 15px 20px;
+    /* ... */
+    width: 90%;  /* Increased width */
+    max-width: 90%;  /* Set a maximum width */
+    height: auto;  /* Let the height adjust based on content */
+    max-height: 80vh;  /* Set a maximum height */
+    overflow-y: auto;  /* Allow scrolling within the modal if content exceeds max-height*/
+  
 }
 
 .modal-content h2 {
@@ -174,13 +181,13 @@ button:hover {
 }
 
 .loading-spinner {
-    border: 8px solid #8d0b0b;
+    border: 8px solid #a76868;
     border-top: 8px solid #3498db;
     border-radius: 50%;
     width: 50px;
     height: 50px;
     animation: spin 1s linear infinite;
-    margin: 0 auto;
+    margin: 10px auto;
     z-index: 10; /* Add this line */
     background-color: rgba(255, 255, 255, 0.8); /* Add this line */
     position: absolute;
@@ -204,8 +211,8 @@ button:hover {
 #contactForm input[type="text"], #contactForm input[type="email"] {
     width: 100%;
     padding: 10px;
-    border: 1px solid lightgrey;
-    border-radius: 5px;
+    border: 5px solid lightgrey;
+    border-radius: 3px;
 }
 
 .checkbox-container {
@@ -250,12 +257,14 @@ a:hover {
 }
 
 #thankYouContent {
-    width: 80vw;  
-    height: 80vh; 
+    width: 60%;  /* Increased width */
+    max-width: 90%;  /* Set a maximum width */
+    /* width: 50vw;  
+    height: 50vh;  */
     position: fixed;
-    top: 70%;
-    left: 70%;
-    transform: translate(-70%, -70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     overflow: auto; 
 }
 
@@ -316,14 +325,14 @@ a:hover {
 
 .modal-content input[type="text"], 
 .modal-content input[type="email"] {
-    border: 1px solid lightgrey; 
-    border-width: 1px;
+    border: 0.3px solid lightgrey; 
+    border-width: 0.2px;
     padding: 5px; 
     margin-bottom: 10px;
-    border-color: rgb(88, 94, 97); 
+    border-color: rgb(165, 166, 167); 
     height: 38px;
     width: 100%; 
-    border-radius: 5px;
+    border-radius: 3px;
 }
 
 .modal-content .checkbox-container {
@@ -382,10 +391,41 @@ a:hover {
     }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 750px) {
     .card {
         width: 85px; 
         height: 85px;
+    }
+}
+
+@media (max-width: 700px) {
+    .modal-content h2 {
+        font-size: 20px;  /* Reduced font size */
+        margin-bottom: 10px;
+    }
+
+    .modal-content p {
+        font-size: 16px;  /* Reduced font size */
+    }
+
+    .modal-content label {
+        font-size: 12px;  /* Reduced font size */
+    }
+
+    button {
+        padding: 8px 15px;  /* Reduced padding */
+        font-size: 14px;   /* Reduced font size */
+    }
+
+    .modal-content input[type="text"], 
+    .modal-content input[type="email"] {
+        height: 30px;  /* Reduced height */
+        font-size: 14px;  /* Reduced font size */
+        padding: 4px 8px;  /* Reduced padding */
+    }
+
+    .header-image {
+        max-height: 200px;  /* Reduced max-height */
     }
 }
 
