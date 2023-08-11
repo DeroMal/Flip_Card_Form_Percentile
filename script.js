@@ -19,6 +19,7 @@ let flippedCards = [];
 let matchedPairs = 0;
 let startTime;
 let timerInterval;
+let finalElapsedTime;
 
 // ==========================
 // EVENT LISTENERS
@@ -130,6 +131,28 @@ function checkMatch() {
 }
 
 // Handle matched cards
+// function handleMatch() {
+//   matchedPairs++;
+//   flippedCards.forEach(card => {
+//     card.style.animation = 'matched 0.5s';
+//     card.addEventListener('animationend', function () {
+//       card.style.animation = '';
+//     });
+//   });
+
+//   const cardFront = flippedCards[1].querySelector('.card-front');
+//   cardFront.addEventListener('transitionend', function onEnd() {
+//     if (matchedPairs === totalCards / 2) {
+//       stopTimer();  // Stop the timer immediately when all cards are matched
+//       // Delay the display of the win modal by 2 seconds (or adjust as needed)
+//       setTimeout(showWinModal, 2000);
+//     }
+//     cardFront.removeEventListener('transitionend', onEnd);
+//   });
+
+//   flippedCards = [];
+// }
+// Handle matched cards
 function handleMatch() {
   matchedPairs++;
   flippedCards.forEach(card => {
@@ -142,7 +165,10 @@ function handleMatch() {
   const cardFront = flippedCards[1].querySelector('.card-front');
   cardFront.addEventListener('transitionend', function onEnd() {
     if (matchedPairs === totalCards / 2) {
-      showWinModal();
+      stopTimer();  // Stop the timer immediately when all cards are matched
+      finalElapsedTime = Date.now() - startTime;  // Store the elapsed time
+      // Delay the display of the win modal by 2 seconds (or adjust as needed)
+      setTimeout(showWinModal, 2000);
     }
     cardFront.removeEventListener('transitionend', onEnd);
   });
@@ -184,37 +210,46 @@ function stopTimer() {
   clearInterval(timerInterval);
 }
 
-
 // Display the win modal
 function showWinModal() {
   const modal = document.getElementById('winModal');
   stopTimer();
 
+  // Display the modal immediately
+  modal.style.display = 'block';
+
   // Show the loading spinner
   const spinner = document.createElement('div');
   spinner.className = 'loading-spinner';
   modal.querySelector('.modal-content').prepend(spinner);
+  console.log("Spinner added to the modal.");
 
-  // Calculate the elapsed time
-  const elapsed = Date.now() - startTime;
-  const minutes = Math.floor(elapsed / 60000);
-  const seconds = Math.floor((elapsed % 60000) / 1000);
+  // Use the stored finalElapsedTime
+  const minutes = Math.floor(finalElapsedTime / 60000);
+  const seconds = Math.floor((finalElapsedTime % 60000) / 1000);
   const timeString = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
 
   // Send the time to the server and get the rank
   sendTimeToServer(timeString)
     .then(data => {
       // Hide the spinner
+      console.log("Data received from server. Hiding spinner.");
       spinner.style.display = 'none';
+
+      // Remove existing time and rank displays
+      const existingTimeDisplay = modal.querySelector('.time-display');
+      const existingRankDisplay = modal.querySelector('.rank-display');
+      if (existingTimeDisplay) existingTimeDisplay.remove();
+      if (existingRankDisplay) existingRankDisplay.remove();
 
       // Update the modal with the time and rank
       const timeDisplay = document.createElement('p');
       timeDisplay.textContent = `Your time: ${timeString}`;
-      timeDisplay.classList.add('green-text');  // Add the green-text class
+      timeDisplay.classList.add('green-text', 'time-display');  // Add the green-text and time-display classes
 
       const rankDisplay = document.createElement('p');
       rankDisplay.textContent = data.message; // Display the ranking message
-      rankDisplay.classList.add('green-text');  // Add the green-text class
+      rankDisplay.classList.add('green-text', 'rank-display');  // Add the green-text and rank-display classes
 
       // Insert the time and rank right after the <h2> tag
       const h2Element = modal.querySelector('h2');
@@ -223,14 +258,13 @@ function showWinModal() {
     })
     .catch(error => {
       // Hide the spinner and show an error message
+      console.log("Error received from server. Hiding spinner.");
       spinner.style.display = 'none';
       alert(`An error occurred: ${error.message}`);
-    })
-    .finally(() => {
-      // Display the modal
-      modal.style.display = 'block';
     });
 }
+
+
 
 // Send the game time to the server and get the player's rank
 async function sendTimeToServer(time) {

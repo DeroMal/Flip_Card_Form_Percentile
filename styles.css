@@ -172,7 +172,7 @@ button:hover {
 }
 
 .loading-spinner {
-    border: 8px solid #f3f3f3;
+    border: 8px solid #8d0b0b;
     border-top: 8px solid #3498db;
     border-radius: 50%;
     width: 50px;
@@ -181,6 +181,10 @@ button:hover {
     margin: 0 auto;
     z-index: 10; /* Add this line */
     background-color: rgba(255, 255, 255, 0.8); /* Add this line */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }  
 
 /* === CONTACT FORM === */
