@@ -18,13 +18,15 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: fit-content;
+    width: -moz-fit-content;
+    width:fit-content;
     max-width: 100%;
 }
 
 /* === GAME BOARD === */
 .game-board {
     display: grid;
+    width: -moz-fit-content;
     width: fit-content;
     gap: 10px; 
     justify-content: center;
