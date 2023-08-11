@@ -1,56 +1,69 @@
 # City-Country Match Game
 
-A memory card game where players match cities to their respective countries. This game is not only fun but also educational, helping players familiarize themselves with various cities and their countries.
+Welcome to the City-Country Match Game repository! This interactive game challenges players to match cities to the countries they belong to. Dive in to test your geographical knowledge and see how you rank!
 
-## Table of Contents
+## 🌍 Overview
 
+The game presents players with a series of cards, each representing a city. The player's task is to match each city with its corresponding country. Upon completion, the player's time is recorded, and they're given a percentile rank based on their performance compared to other players. Additionally, players have the option to submit their details for further engagement.
+
+## 📖 Table of Contents
+
+- [Features](#features)
 - [Getting Started](#getting-started)
-- [Game Instructions](#game-instructions)
-- [Development](#development)
   - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
-  - [Integration with Cloudflare Worker](#integration-with-cloudflare-worker)
+  - [Setup](#setup)
+- [File Structure](#file-structure)
+- [Usage](#usage)
 - [Contributing](#contributing)
 - [License](#license)
 
-## Getting Started
+## ✨ Features
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+- **Interactive Gameplay**: Engage with a user-friendly interface and smooth animations.
+- **Performance Tracking**: Get real-time feedback on your game performance.
+- **Backend Integration**: Seamless integration with Google Apps Script and Cloudflare Workers for data storage and retrieval.
+
+## 🚀 Getting Started
 
 ### Prerequisites
 
-- A modern web browser (e.g., Chrome, Firefox, Safari).
-- A code editor (e.g., VSCode, Atom).
-- Basic knowledge of HTML, CSS, and JavaScript.
+- A Google account to set up Google Apps Script.
+- A Cloudflare account to deploy the worker function.
 
-### Installation
+### Setup
 
-1. Clone the repository to your local machine:
-2. Navigate to the project directory: cd city-country-match-game
-3. Open the `index.html` file in your preferred browser to start the game.
+1. **Google Apps Script**:
+   - Navigate to [Google Apps Script](https://script.google.com/).
+   - Create a new script and replace its content with the provided script from the `Google Apps Script` folder.
+   - Publish the script as a web app. Note down the provided URL.
+   - Replace the dummy URL in the Cloudflare Worker script with the URL you obtained from publishing the Google Apps Script.
 
-## Game Instructions
+2. **Cloudflare Worker**:
+   - Navigate to [Cloudflare Workers](https://workers.cloudflare.com/).
+   - Create a new worker and replace its content with the provided script from the `Cloudflare Worker` folder.
+   - Deploy the worker and note down the provided URL.
+   - Replace the dummy URL in the `script.html` file with the URL you obtained from deploying the Cloudflare Worker.
 
-1. Click on the "Yes" button on the welcome modal to start the game.
-2. Flip over two cards at a time, trying to match the city with its country.
-3. The game is completed when all pairs are matched.
-4. Upon completion, a modal will prompt you to enter your name and email to receive information about discounted offers.
-5. After submitting the form, a "Thank You" modal will appear. You can then choose to restart the game.
+3. **Game Setup**:
+   - Clone this repository or download the files.
+   - Open `index.html` in a browser to play the game.
 
-## Development
+## 📁 File Structure
 
-### Integration with Cloudflare Worker
+- `index.html`: The main HTML file containing the structure of the game.
+- `styles.css`: Contains the styling for the game.
+- `script.js`: Contains the JavaScript logic for the game.
+- `Google Apps Script`: Folder containing the backend script to save game data to a Google Sheet.
+- `Cloudflare Worker`: Folder containing the worker function to handle CORS issues when communicating with Google Apps Script.
 
-The game is integrated with a Cloudflare Worker to send user data upon game completion. To set up your own Cloudflare Worker:
+## 🎮 Usage
 
-1. Visit Cloudflare Workers' official website and set up a new worker.
-2. Replace the worker URL in the `script.js` file with your worker's URL.
-3. Ensure your worker is set up to handle POST requests and save the data as required.
+To play the game, simply open `index.html` in a browser. Match each city card with its corresponding country. Once all matches are made, your time will be recorded and you'll be given a percentile rank. You can also submit your details for further engagement.
 
-### Contributing
+## 🤝 Contributing
 
-We welcome contributions! Please read our [CONTRIBUTING.md](CONTRIBUTING.md) for details on how to submit pull requests to us.
+Contributions, issues, and feature requests are welcome! Feel free to check the issues page to contribute.
 
-## License
+## 📜 License
 
-This project is licensed under the MIT License. See the [LICENSE.md](LICENSE.md) file for details.
+This project is licensed under the MIT License. See the `LICENSE` file for details.
