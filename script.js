@@ -221,13 +221,13 @@ function showWinModal() {
       spinner.style.display = 'none';
 
       // Update the modal with the player's game time and rank.
-      const timeDisplay = document.createElement('p');
-      timeDisplay.textContent = `Your time: ${timeString}`;
-      timeDisplay.classList.add('green-text', 'time-display');
-
       const rankDisplay = document.createElement('p');
       rankDisplay.textContent = data.message;  // Display the ranking message from the server.
       rankDisplay.classList.add('green-text', 'rank-display');
+      
+      const timeDisplay = document.createElement('p');
+      timeDisplay.textContent = `Your time: ${timeString}`;
+      timeDisplay.classList.add('green-text', 'time-display');
 
       // Insert the game time and rank displays into the modal.
       const h2Element = modal.querySelector('h2');
